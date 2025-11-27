@@ -1,23 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>바이브 코딩 타이머</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <title>Simple Timer</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; }
+    #display { font-size: 3rem; margin-bottom: 1rem; }
+    button { margin-right: 0.5rem; padding: 0.5rem 1rem; }
+  </style>
 </head>
 <body>
+  <div id="display">00:00</div>
+  <button id="startBtn" type="button">Start</button>
+  <button id="pauseBtn" type="button">Pause</button>
+  <button id="resetBtn" type="button">Reset</button>
 
-    <div class="timer-container">
-        <h1>타이머</h1>
-        <div id="time-display">00:00:00</div>
-        <div class="button-container">
-            <button id="start-btn">시작</button>
-            <button id="stop-btn">정지</button>
-            <button id="reset-btn">초기화</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+  <script src="timer.js"></script>
 </body>
 </html>

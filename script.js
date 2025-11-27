@@ -1,33 +1,68 @@
-// HTML에서 필요한 요소들을 가져옵니다.
-const timeDisplay = document.getElementById('time-display');
-const startBtn = document.getElementById('start-btn');
-const stopBtn = document.getElementById('stop-btn');
-const resetBtn = document.getElementById('reset-btn');
+// 간단한 타이머 구현: 초 단위로 증가
+(() => {
+  const display = document.getElementById('display');
+  const startBtn = document.getElementById('startBtn');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const resetBtn = document.getElementById('resetBtn');
 
-// 타이머 관련 변수들 초기화
-let startTime;
-let updatedTime;
-let difference;
-let timerInterval; // 타이머의 setInterval ID를 저장
-let running = false; // 타이머 실행 상태
+  let elapsedSeconds = 0;
+  let intervalId = null;
 
-// 시작 버튼 클릭 이벤트
-startBtn.addEventListener('click', () => {
-    // 여기에 '시작' 버튼을 눌렀을 때 타이머가 시작되는 코드를 작성하세요.
-    // Copilot에게 물어보세요: "// 1초마다 시간을 업데이트하는 타이머 시작"
-    console.log("시작 버튼 클릭됨");
-});
+  function formatTime(sec) {
+    const mm = String(Math.floor(sec / 60)).padStart(2, '0');
+    const ss = String(sec % 60).padStart(2, '0');
+    return `${mm}:${ss}`;
+  }
 
-// 정지 버튼 클릭 이벤트
-stopBtn.addEventListener('click', () => {
-    // 여기에 '정지' 버튼을 눌렀을 때 타이머가 멈추는 코드를 작성하세요.
-    // Copilot에게 물어보세요: "// 타이머를 일시 정지"
-    console.log("정지 버튼 클릭됨");
-});
+  function updateDisplay() {
+    display.textContent = formatTime(elapsedSeconds);
+  }
 
-// 초기화 버튼 클릭 이벤트
-resetBtn.addEventListener('click', () => {
-    // 여기에 '초기화' 버튼을 눌렀을 때 타이머가 0으로 리셋되는 코드를 작성하세요.
-    // Copilot에게 물어보세요: "// 타이머를 0으로 리셋"
-    console.log("초기화 버튼 클릭됨");
-});
+  function startTimer() {
+    console.log('startTimer called'); // 호출 확인용
+    if (intervalId !== null) {
+      console.log('Timer already running. Ignoring start.');
+      return; // 이미 실행중이면 무시
+    }
+    // 1초마다 증가
+    intervalId = setInterval(() => {
+      elapsedSeconds += 1;
+      updateDisplay();
+    }, 1000);
+
+    // UI 상태 변경(선택)
+    startBtn.disabled = true;
+    pauseBtn.disabled = false;
+  }
+
+  function pauseTimer() {
+    console.log('pauseTimer called');
+    if (intervalId !== null) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+    startBtn.disabled = false;
+    pauseBtn.disabled = true;
+  }
+
+  function resetTimer() {
+    console.log('resetTimer called');
+    if (intervalId !== null) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+    elapsedSeconds = 0;
+    updateDisplay();
+    startBtn.disabled = false;
+    pauseBtn.disabled = true;
+  }
+
+  // 초기 상태
+  updateDisplay();
+  pauseBtn.disabled = true;
+
+  // 핸들러 연결
+  startBtn.addEventListener('click', startTimer);
+  pauseBtn.addEventListener('click', pauseTimer);
+  resetBtn.addEventListener('click', resetTimer);
+})();
