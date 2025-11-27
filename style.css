@@ -1,0 +1,53 @@
+/* 전체 페이지 스타일 */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: sans-serif;
+}
+
+/* 타이머 전체를 감싸는 컨테이너 */
+.timer-container {
+    text-align: center;
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 시간 표시 영역 스타일 */
+#time-display {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #333;
+}
+
+/* 버튼들을 감싸는 컨테이너 */
+.button-container button {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+/* 시작 버튼 */
+#start-btn {
+    background-color: #28a745; /* 초록색 */
+}
+
+/* 정지 버튼 */
+#stop-btn {
+    background-color: #dc3545; /* 빨간색 */
+}
+
+/* 초기화 버튼 */
+#reset-btn {
+    background-color: #6c757d; /* 회색 */
+}
