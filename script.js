@@ -45,6 +45,19 @@
         updateDisplay();
       }, 1000);
 
+      //전체 화면이 번쩍거리도록 적용
+      //BACKGROUND COLOR TO GOLD.
+      document.body.style.backgroundColor = 'gold';
+      setTimeout(() => {
+        document.body.style.backgroundColor = '';
+      }, 100);
+
+      //아이콘 색깔 변경 붉은색으로 변경
+      if (window.electronAPI && window.electronAPI.setAppIconBadgeColor) {
+        window.electronAPI.setAppIconBadgeColor('red');
+      }
+
+
       if (startBtn) startBtn.disabled = true;
       if (pauseBtn) pauseBtn.disabled = false;
     } catch (err) {
@@ -55,6 +68,21 @@
 
   function pauseTimer(e) {
     try {
+      
+      //타이머 종료. 배경색깔 화이트로 변경
+      if (window.electronAPI && window.electronAPI.setAppIconBadgeColor) {
+        window.electronAPI.setAppIconBadgeColor('white');
+      }
+      document.body.style.backgroundColor = 'white';
+      setTimeout(() => {
+        document.body.style.backgroundColor = '';
+      }, 100);
+      
+       
+
+      
+      
+
       if (e && e.preventDefault) e.preventDefault();
       debug('pauseTimer called');
       if (intervalId !== null) {
